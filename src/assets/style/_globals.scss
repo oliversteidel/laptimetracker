@@ -27,6 +27,13 @@ $input-bg-color: hsla(203, 30%, 80%, 0.2);
   justify-content: space-between;
 }
 
+.border-gradient {
+  border: 1px solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  border-image-source: $gradient;
+}
+
 *,
 *::before,
 *::after {

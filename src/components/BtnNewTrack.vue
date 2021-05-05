@@ -1,5 +1,5 @@
 <template>
-<div class="container flex-col ai-c jc-c">
+<div class="container flex-col ai-c jc-c border-gradient">
     <img src="../assets/img/icon-track.svg" alt="icon of a racetrack">
     <p>New Track</p>
 </div>
@@ -17,14 +17,10 @@ export default {
 @import "../assets/style/_globals.scss";
 
 .container {
-    width: 10rem;
+    max-width: 10rem;
     height: 10rem;
     background: $bg-color;
-    border: 1px solid;
-    border-image-slice: 1;
-    border-width: 1px;
-    border-image-source: $gradient;
-
+    
     img {
         width: 5rem;
         height: auto;
