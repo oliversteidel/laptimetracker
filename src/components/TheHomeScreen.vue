@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <TheHeader />
-    <AddNewTrack v-on:add-track="addTrack" />
+    <AddNewTrack v-on:add-track="emitData" />
     <TrackList :tracks="tracks" />
   </div>
 </template>
@@ -17,16 +17,20 @@ export default {
     AddNewTrack,
     TrackList
   },
+  props: ["tracks"],
   data() {
     return {
-      tracks: [{ name: "Mugello" }],
+      trackObj: ""
     };
   },
   methods: {
-      addTrack(newTrack) {
-          this.tracks.push(newTrack);
-      }
+      emitData(data) {
+      this.trackObj = data;
+      this.$emit("add-track", this.trackObj);
+      this.trackObj = "";
+    },
   }
+  
 };
 </script>
 

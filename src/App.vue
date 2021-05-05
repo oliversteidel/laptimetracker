@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <TheHomeScreen />
+    <TheHomeScreen v-if="isAtHomeScreen" v-on:add-track="addTrack" :tracks="tracks" />
+    <TheTrackScreen v-if="!isAtHomeScreen" />
     
     
   </div>
@@ -8,11 +9,24 @@
 
 <script>
 import TheHomeScreen from "./components/TheHomeScreen";
+import TheTrackScreen from "./components/TheTrackScreen";
 export default {
   name: "App",
   components: {
-    TheHomeScreen
+    TheHomeScreen,
+    TheTrackScreen
   },
+  data() {
+    return {
+      isAtHomeScreen: true,
+      tracks: [{ name: "Mugello" }],
+    }
+  },
+  methods: {
+      addTrack(newTrack) {
+          this.tracks.push(newTrack);
+      }
+  }
 };
 </script>
 
