@@ -1,0 +1,41 @@
+// colors
+$gradient: linear-gradient(to bottom, hsl(46, 100%, 52%), hsl(19, 100%, 61%));
+$font-color: hsl(24, 68%, 60%);
+$bg-color: hsla(203, 30%, 10%, 0.8);
+$input-bg-color: hsla(203, 30%, 80%, 0.2);
+
+// helper classes
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 10px;
+}
