@@ -17,14 +17,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/style/_globals.scss";
+@import "./style/_globals.scss";
 
-#app {
+#app {  
   min-height: 100vh;
   padding: 7rem 1rem;
   background-image: url("./assets/img/bg-home.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top center;  
+  background-position: top center;
 }
 </style>

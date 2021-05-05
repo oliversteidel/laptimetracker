@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/style/_globals.scss";
+@import "../style/_globals.scss";
 .header {
   width: 100%;
   height: 6rem;

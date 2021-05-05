@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/style/_globals.scss";
+@import "../style/_globals.scss";
 
 .container {
     max-width: 10rem;

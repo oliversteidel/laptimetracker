@@ -1,7 +1,7 @@
 <template>
     <div class="container flex">
         <BtnNewTrack />
-        <InputNewTrack />
+        <InputNewTrack v-on:add-track="emitData" />
     </div>
 </template>
 
@@ -14,12 +14,24 @@ export default {
     components: {
         BtnNewTrack,
         InputNewTrack
+    },
+    data() {
+        return {
+            trackObj: ""
+        }
+    },
+    methods: {
+        emitData(data) {
+            this.trackObj = data;
+            this.$emit('add-track', this.trackObj);
+            this.trackObj = "";
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/style/_globals.scss";
+@import "../style/_globals.scss";
 .container {
     width: 100%;
 }
