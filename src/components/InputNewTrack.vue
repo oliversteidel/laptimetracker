@@ -45,6 +45,7 @@ export default {
   background: $bg-color;
   padding: 1rem;
   border-left: transparent;
+  
 
   label {
     font-size: 2rem;

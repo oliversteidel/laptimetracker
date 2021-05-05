@@ -20,6 +20,7 @@ export default {
     max-width: 10rem;
     height: 10rem;
     background: $bg-color;
+    cursor: pointer;
     
     img {
         width: 5rem;
