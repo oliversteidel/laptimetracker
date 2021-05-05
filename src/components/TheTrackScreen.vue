@@ -1,13 +1,18 @@
 <template>
-<div class="container"></div>
-    
+  <div class="container">
+    <TheHeader />
+    <TrackName :selectedTrack="selectedTrack" />
+  </div>
 </template>
 
 <script>
+import TheHeader from "./TheHeader.vue";
+import TrackName from "./TrackName.vue";
 export default {
-    name: 'TheTrackScreen'
-    
-}
+  name: "TheTrackScreen",
+  components: { TheHeader, TrackName },
+  props: ["selectedTrack"],
+};
 </script>
 
 <style lang="scss" scoped>

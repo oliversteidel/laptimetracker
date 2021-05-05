@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <TheHeader />
-    <AddNewTrack v-on:add-track="emitData" />
-    <TrackList :tracks="tracks" />
+    <AddNewTrack v-on:add-track="emitTrackObject" />
+    <TrackList :tracks="tracks" v-on:track-clicked="emitClickedTrack" />
   </div>
 </template>
 
@@ -15,22 +15,27 @@ export default {
   components: {
     TheHeader,
     AddNewTrack,
-    TrackList
+    TrackList,
   },
   props: ["tracks"],
   data() {
     return {
-      trackObj: ""
+      trackObj: "",
+      clickedTrack: ""
     };
   },
   methods: {
-      emitData(data) {
+    emitTrackObject(data) {
       this.trackObj = data;
       this.$emit("add-track", this.trackObj);
       this.trackObj = "";
     },
-  }
-  
+    emitClickedTrack(data) {
+        this.clickedTrack = data;
+        this.$emit("track-clicked", this.clickedTrack);
+        this.clickedTrack = "";
+    }
+  },
 };
 </script>
 
