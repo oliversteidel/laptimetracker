@@ -1,47 +1,92 @@
 <template>
-<div class="container flex-col jc-sb border-gradient">
+  <div class="container flex-col jc-sb border-gradient">
     <div class="car-index-container flex jc-sb">
-        <div class="car-container flex-col">
-            <label for="car">Car</label>
-            <input type="text" name="car" id="car" class="border-gradient">
-        </div>
-        <div class="index-container flex-col">
-            <label for="index">Index</label>
-            <input type="text" name="index" id="index" class="border-gradient">
-        </div>
+      <div class="car-container flex-col">
+        <label for="car">Car</label>
+        <input
+          type="text"
+          name="car"
+          id="car"
+          class="border-gradient"
+          required
+        />
+      </div>
+      <div class="index-container flex-col">
+        <label for="index">Index</label>
+        <input type="text" name="index" id="index" class="border-gradient" />
+      </div>
     </div>
-    <div class="laptime-container flex-col">
+    <div class="laptime-submit-container flex jc-sb">
+      <div class="laptime-container flex-col">
         <label for="laptime">Laptime</label>
-        <input type="text" name="laptime" id="laptime" class="border-gradient">
+        <input
+          type="text"
+          name="laptime"
+          id="laptime"
+          class="border-gradient"
+          required
+        />
+      </div>
+      <div class="submit-container flex-col">
+        <div
+          class="submit-btn border-gradient flex ai-c jc-c"
+          :class="[isComplete ? bgGreen : bgRed]"
+        >
+          Add Time
+        </div>
+      </div>
     </div>
-
-</div>
-    
+  </div>
 </template>
 
 <script>
 export default {
-    name: "InputNewTime"
-}
+  name: "InputNewTime",
+  data() {
+    return {
+      isComplete: false,
+      bgRed: "submit-btn--red",
+      bgGreen: "submit-btn-green",
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import "../style/_globals.scss";
 
 .container {
-    height: 18rem;
-    background: $bg-color;
-    padding: 1rem;
-    margin-top: 1rem;
+  height: 18rem;
+  background: $bg-color;
+  padding: 1rem;
+  margin-top: 1rem;
 
-    .car-container {
-        width: 70%;
-    }
+  .car-container,
+  .laptime-container {
+    width: 70%;
+  }
 
-    .index-container {
-        width: 25%;
-    }
+  .index-container,
+  .submit-container {
+    width: 25%;
+  }
 
-    
+  .submit-container {
+    justify-content: flex-end;
+  }
+
+  .submit-btn {
+    height: 3.5rem;
+    font-size: 1.6rem;
+    color: $font-color;
+  }
+
+  .submit-btn--red {
+    background: $red;
+  }
+
+  .submit-btn--green {
+    background: $green;
+  }
 }
 </style>

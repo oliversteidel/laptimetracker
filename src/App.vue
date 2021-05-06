@@ -1,5 +1,6 @@
 <template>
   <div id="app" :class="[isAtHomeScreen ? bgHome : bgTrack]">
+    <TheHeader />
     <transition name="fade">
       <TheHomeScreen
         v-if="isAtHomeScreen"
@@ -9,17 +10,23 @@
       />
     </transition>
     <transition name="fade">
-      <TheTrackScreen v-if="!isAtHomeScreen" :selectedTrack="selectedTrack" />
+      <TheTrackScreen
+        v-if="!isAtHomeScreen"
+        :selectedTrack="selectedTrack"
+        v-on:back-to-home="showHomeScreen"
+      />
     </transition>
   </div>
 </template>
 
 <script>
+import TheHeader from "./components/TheHeader";
 import TheHomeScreen from "./components/TheHomeScreen";
 import TheTrackScreen from "./components/TheTrackScreen";
 export default {
   name: "App",
   components: {
+    TheHeader,
     TheHomeScreen,
     TheTrackScreen,
   },
@@ -27,7 +34,12 @@ export default {
     return {
       isAtHomeScreen: true,
       selectedTrack: "",
-      tracks: [{ name: "Mugello" }],
+      tracks: [
+        {
+          name: "Mugello",
+          times: [{ car: "Porsche", powerIndex: "653", laptime: "" }],
+        },
+      ],
       bgHome: "bg-home",
       bgTrack: "bg-track",
     };
@@ -43,6 +55,9 @@ export default {
       this.selectedTrack = trackName;
       //this.setSelectedTrack(trackName);
       this.isAtHomeScreen = false;
+    },
+    showHomeScreen() {
+      this.isAtHomeScreen = true;
     },
   },
 };

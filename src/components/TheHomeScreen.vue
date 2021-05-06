@@ -1,19 +1,16 @@
 <template>
   <div class="container">
-    <TheHeader />
     <AddNewTrack v-on:add-track="emitTrackObject" />
     <TrackList :tracks="tracks" v-on:track-clicked="emitClickedTrack" />
   </div>
 </template>
 
 <script>
-import TheHeader from "./TheHeader.vue";
 import AddNewTrack from "./AddNewTrack";
 import TrackList from "./TrackList";
 export default {
   name: "TheHomeScreen",
   components: {
-    TheHeader,
     AddNewTrack,
     TrackList,
   },
@@ -21,7 +18,7 @@ export default {
   data() {
     return {
       trackObj: "",
-      clickedTrack: ""
+      clickedTrack: "",
     };
   },
   methods: {
@@ -31,10 +28,10 @@ export default {
       this.trackObj = "";
     },
     emitClickedTrack(data) {
-        this.clickedTrack = data;
-        this.$emit("track-clicked", this.clickedTrack);
-        this.clickedTrack = "";
-    }
+      this.clickedTrack = data;
+      this.$emit("track-clicked", this.clickedTrack);
+      this.clickedTrack = "";
+    },
   },
 };
 </script>
