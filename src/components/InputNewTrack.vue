@@ -47,20 +47,6 @@ export default {
   border-left: transparent;
   
 
-  label {
-    font-size: 2rem;
-    color: $font-color;
-    margin-bottom: 1rem;
-  }
-
-  input {
-    appearance: none;
-    height: 3.5rem;
-    background: $input-bg-color;
-    padding-left: 1rem;
-    font-size: 1.8rem;
-    font-family: inherit;
-    color: $font-color;
-  }
+  
 }
 </style>
