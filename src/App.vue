@@ -14,6 +14,7 @@
         v-if="!isAtHomeScreen"
         :selectedTrack="selectedTrack"
         v-on:back-to-home="showHomeScreen"
+        v-on:add-new-time="addTime"
       />
     </transition>
   </div>
@@ -48,16 +49,21 @@ export default {
     addTrack(newTrack) {
       this.tracks.push(newTrack);
     },
-    // setSelectedTrack(arg) {
-    //   this.selectedTrack = arg;
-    // },
+    addTime(newTime) {
+      this.tracks.forEach(el => {
+        if(el.name === this.selectedTrack) {
+          el.times.push(newTime)
+        }
+      })
+    },
+
     showTrackScreen(trackName) {
       this.selectedTrack = trackName;
-      //this.setSelectedTrack(trackName);
       this.isAtHomeScreen = false;
     },
     showHomeScreen() {
       this.isAtHomeScreen = true;
+      this.selectedTrack = "";
     },
   },
 };

@@ -27,6 +27,7 @@ export default {
       if (inputTrackName.value) {
         const newTrack = {
           name: this.trackName,
+          times: []
         };
 
         this.$emit("add-track", newTrack);

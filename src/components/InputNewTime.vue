@@ -58,8 +58,10 @@ export default {
           if(this.isComplete) {
               return              
           }
+
           const inputCar = document.getElementById('car');          
           const inputLaptime = document.getElementById('laptime');
+
           if(inputCar.value && inputLaptime.value) {
               this.isComplete = true;
           }
@@ -74,6 +76,9 @@ export default {
               this.newTime.powerIndex = inputIndex.value;
               this.newTime.laptime = inputLaptime.value;
           }
+
+          this.$emit('add-new-time', this.newTime);
+          
           inputCar.value = "";
           inputIndex.value = "";
           inputLaptime.value = "";
