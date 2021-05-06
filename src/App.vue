@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="[isAtHomeScreen ? bgHome : bgTrack]">
+  <div id="app" class="bg-home" :class="{ 'bg-track': !isAtHomeScreen }">
     <TheHeader />
     <transition name="fade">
       <TheHomeScreen
@@ -78,10 +78,13 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
+  background-color: hsl(203, 30%, 10%);
+  transition: background-image 0.25s linear;
 }
 
 .bg-home {
   background-image: url("./assets/img/bg-home.jpg");
+  
 }
 
 .bg-track {
@@ -90,12 +93,12 @@ export default {
 }
 
 .fade-enter-active {
-  transition: opacity 0.5s ease-in;
+  transition: opacity 0.25s ease-in;
   transition-delay: 0.5s;
 }
 
 .fade-leave-active {
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.25s ease-out;
 }
 
 .fade-enter,

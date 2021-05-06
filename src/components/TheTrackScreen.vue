@@ -34,6 +34,7 @@ export default {
       this.newTime = data;
       this.$emit('add-new-time', this.newTime);
       this.newTime = {};
+      this.toggleInput();
     }
   },
 };
