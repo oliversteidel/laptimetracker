@@ -9,6 +9,7 @@
           id="car"
           class="border-gradient"
           required
+          v-on:keyup="checkInputComplete"
         />
       </div>
       <div class="index-container flex-col">
@@ -25,12 +26,14 @@
           id="laptime"
           class="border-gradient"
           required
+          v-on:keyup="checkInputComplete"
         />
       </div>
       <div class="submit-container flex-col">
         <div
           class="submit-btn border-gradient flex ai-c jc-c"
           :class="[isComplete ? bgGreen : bgRed]"
+          @click="addTime"
         >
           Add Time
         </div>
@@ -46,9 +49,37 @@ export default {
     return {
       isComplete: false,
       bgRed: "submit-btn--red",
-      bgGreen: "submit-btn-green",
-    };
+      bgGreen: "submit-btn--green",
+      newTime: { car: "", powerIndex: "", laptime: ""}
+    }
   },
+  methods: {
+      checkInputComplete() {
+          if(this.isComplete) {
+              return              
+          }
+          const inputCar = document.getElementById('car');          
+          const inputLaptime = document.getElementById('laptime');
+          if(inputCar.value && inputLaptime.value) {
+              this.isComplete = true;
+          }
+      },
+      addTime() {
+          const inputCar = document.getElementById('car');
+          const inputIndex = document.getElementById('index');
+          const inputLaptime = document.getElementById('laptime');
+
+          if(inputCar.value && inputLaptime.value) {
+              this.newTime.car = inputCar.value;
+              this.newTime.powerIndex = inputIndex.value;
+              this.newTime.laptime = inputLaptime.value;
+          }
+          inputCar.value = "";
+          inputIndex.value = "";
+          inputLaptime.value = "";
+          this.isComplete = false;
+      }
+  }
 };
 </script>
 
@@ -79,6 +110,7 @@ export default {
     height: 3.5rem;
     font-size: 1.6rem;
     color: $font-color;
+    cursor: pointer;
   }
 
   .submit-btn--red {
