@@ -54,27 +54,52 @@ export default {
       let temp = {
         car: newTime.car,
         powerIndex: newTime.powerIndex,
-        laptime: newTime.laptime
-      };
-      console.log(newTime);
-      this.tracks.forEach(el => {
-        if(el.name === this.selectedTrack) {
+        laptime: newTime.laptime,
+      };      
+      this.tracks.forEach((el) => {
+        if (el.name === this.selectedTrack) {
           el.times.push(temp);
         }
-      })
+      });
       this.sortLaptimes();
+      this.calcTimeDiffs();
     },
-    sortLaptimes() {      
-      this.tracks.forEach(el => {
-        el.times = el.times.sort(function(a, b) {  
+    sortLaptimes() {
+      this.tracks.forEach((el) => {
+        el.times = el.times.sort(function (a, b) {
           let timeA = a.laptime;
           let timeB = b.laptime;
-          if(timeA < timeB) return -1;
-          if(timeA > timeB) return 1;
-          return 0;        
-          
-        })
-      })
+          if (timeA < timeB) return -1;
+          if (timeA > timeB) return 1;
+          return 0;
+        });
+      });
+    },
+    calcTimeDiffs() {
+      this.tracks.forEach((el) => {
+        if (el.times.length > 1) {
+          let bestTime = this.convertLaptimeToMillis(el.times[0].laptime);
+          el.times.forEach((item) => {
+            let compareTime = this.convertLaptimeToMillis(item.laptime);
+            let result = compareTime - bestTime;
+            console.log(result);            
+          });
+        }
+      });
+    },
+
+    convertLaptimeToMillis(str) {
+      let indexOfColon = str.indexOf(":");
+      let indexOfComma = str.indexOf(",");
+
+      let min = parseInt(str.substring(0, indexOfColon));
+      let sec = parseInt(str.substring(indexOfColon + 1, indexOfComma));
+      let tenth = parseInt(str.substring(indexOfComma + 1));
+
+      let minInMillis = min * 60000;
+      let secInMillis = sec * 1000;
+
+      return minInMillis + secInMillis + tenth;
     },
 
     showTrackScreen(trackName) {
@@ -98,13 +123,13 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
+  background-attachment: fixed;
   background-color: hsl(203, 30%, 10%);
   transition: background-image 0.25s linear;
 }
 
 .bg-home {
   background-image: url("./assets/img/bg-home.jpg");
-  
 }
 
 .bg-track {
