@@ -15,18 +15,7 @@
 export default {
   name: "Tracklist",
   props: ["tracks"],
-//   data() {
-//     return {
-//       selectedTrack: "",
-//     };
-//   },
-//   methods: {
-//     emitSelectedTrack(arg) {
-//       this.selectedTrack = arg;
-//       this.$emit("track-clicked", this.selectedTrack);
-//       this.selectedTrack = "";
-//     },
-//   },
+
 };
 </script>
 

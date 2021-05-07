@@ -6,6 +6,12 @@ $input-bg-color: hsla(203, 30%, 80%, 0.2);
 $red: hsla(4, 100%, 30%, 0.2);
 $green: hsla(138, 100%, 20%, 0.2);
 
+// braekpoints
+
+$br-small: 31.25rem; //500px
+
+
+
 // helper classes
 
 .flex {
@@ -35,6 +41,8 @@ $green: hsla(138, 100%, 20%, 0.2);
   border-width: 1px;
   border-image-source: $gradient;
 }
+
+// global element styling
 
 .btn {
   min-width: 10rem;
@@ -82,4 +90,12 @@ input {
 html {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 10px;
+}
+
+// mixins
+
+@mixin breakpoint-up($size) {
+  @media only screen and (min-width: $size) {
+      @content;
+  }
 }

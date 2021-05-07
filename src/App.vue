@@ -13,6 +13,7 @@
       <TheTrackScreen
         v-if="!isAtHomeScreen"
         :selectedTrack="selectedTrack"
+        :tracks="tracks"
         v-on:back-to-home="showHomeScreen"
         v-on:add-new-time="addTime"
       />
@@ -38,7 +39,7 @@ export default {
       tracks: [
         {
           name: "Mugello",
-          times: [{ car: "Porsche", powerIndex: "653", laptime: "" }],
+          times: [{ car: "Porsche", powerIndex: "653", laptime: "01:23,456" }],
         },
       ],
       bgHome: "bg-home",

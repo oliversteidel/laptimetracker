@@ -22,10 +22,14 @@ export default {
 
   &__title {
     font-family: "Racing Sans One", cursive;
-    font-size: 4rem;
+    font-size: 10vw;
     background: $gradient;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    @include breakpoint-up($br-small) {
+      font-size: 4rem;
+    }
   }
 }
 </style>
