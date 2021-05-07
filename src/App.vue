@@ -39,7 +39,7 @@ export default {
       tracks: [
         {
           name: "Mugello",
-          times: [{ car: "Porsche", powerIndex: "653", laptime: "01:23,456" }],
+          times: [],
         },
       ],
       bgHome: "bg-home",
@@ -51,10 +51,29 @@ export default {
       this.tracks.push(newTrack);
     },
     addTime(newTime) {
+      let temp = {
+        car: newTime.car,
+        powerIndex: newTime.powerIndex,
+        laptime: newTime.laptime
+      };
+      console.log(newTime);
       this.tracks.forEach(el => {
         if(el.name === this.selectedTrack) {
-          el.times.push(newTime)
+          el.times.push(temp);
         }
+      })
+      this.sortLaptimes();
+    },
+    sortLaptimes() {      
+      this.tracks.forEach(el => {
+        el.times = el.times.sort(function(a, b) {  
+          let timeA = a.laptime;
+          let timeB = b.laptime;
+          if(timeA < timeB) return -1;
+          if(timeA > timeB) return 1;
+          return 0;        
+          
+        })
       })
     },
 

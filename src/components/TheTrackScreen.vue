@@ -6,9 +6,11 @@
       <BtnHome @click.native="$emit('back-to-home')" />
     </div>
     <transition name="scale">
-      <InputNewTime v-if="isInputActive" v-on:add-new-time="emitNewTime" />
+      <InputNewTime v-on:add-new-time="emitNewTime" id="input-new-time" />
     </transition>
-    <Laptime :tracks="tracks" :selectedTrack="selectedTrack" />
+    
+    <Laptime :tracks="tracks" :selectedTrack="selectedTrack" id="laptime-list" />
+    
   </div>
 </template>
 
@@ -30,8 +32,27 @@ export default {
     };
   },
   methods: {
+    moveLaptime(bool) {
+      const laptimeEl = document.getElementById('laptime-list');
+      if(bool) {
+        laptimeEl.style.transform = 'translateY(0)';
+      }else{
+        laptimeEl.style.transform = 'translateY(-190px)';
+      }      
+    },
+    moveInput(bool) {
+      const inputTime = document.getElementById('input-new-time');
+      if(bool) {
+        inputTime.style.transform = 'scale(1)';
+      }else{
+        inputTime.style.transform = 'scale(0)';
+      }
+
+    },
     toggleInput() {
-      this.isInputActive = !this.isInputActive;
+      this.isInputActive = !this.isInputActive;      
+      this.moveLaptime(this.isInputActive);
+      this.moveInput(this.isInputActive);
     },
     emitNewTime(data) {
       this.newTime = data;
@@ -49,13 +70,29 @@ export default {
   margin-top: 1rem;
 }
 
-.scale-enter-active,
-.scale-leave-active {
-  transition: transform 0.3s ease-in;
+#input-new-time {
   transform-origin: top left;
-}
-.scale-enter,
-.scale-leave-to {
   transform: scale(0);
+  transition: transform 0.3s ease-in;
 }
+
+#laptime-list {
+  transition: transform 0.3s ease-in;
+  transform: translateY(-190px);
+}
+
+// .scale-enter-active,
+// .scale-leave-active {
+//   transition: transform 0.3s ease-in;
+//   transform-origin: top left;
+// }
+// .scale-enter,
+// .scale-leave-to {
+//   transform: scale(0);
+// }
+
+
+
+
+
 </style> 

@@ -41,6 +41,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/_globals.scss";
+
+
 .container {
   width: 100%;
   height: 10rem;
@@ -55,7 +57,7 @@ export default {
 
   &__top {
     border-bottom: 1px solid;
-    border-image-slice: 1;    
+    border-image-slice: 1;
     border-image-source: $gradient;
   }
 
@@ -79,15 +81,17 @@ export default {
   .car-name {
     width: 57%;
     border-left: 1px solid;
-    border-image-slice: 1;    
+    border-image-slice: 1;
     border-image-source: $gradient;
+    font-size: 2rem;
   }
 
   .power-index {
     width: 28%;
     border-left: 1px solid;
-    border-image-slice: 1;    
+    border-image-slice: 1;
     border-image-source: $gradient;
+    font-size: 2rem;
   }
 
   .lap-time {
@@ -98,8 +102,10 @@ export default {
   .diff {
     width: 28%;
     border-left: 1px solid;
-    border-image-slice: 1;    
+    border-image-slice: 1;
     border-image-source: $gradient;
   }
 }
+
+
 </style>
