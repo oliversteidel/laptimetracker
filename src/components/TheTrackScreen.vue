@@ -5,12 +5,12 @@
       <BtnNewTime @click.native="toggleInput" />
       <BtnHome @click.native="$emit('back-to-home')" />
     </div>
-    <transition name="scale">
-      <InputNewTime v-on:add-new-time="emitNewTime" id="input-new-time" />
-    </transition>
-    
-    <Laptime :tracks="tracks" :selectedTrack="selectedTrack" id="laptime-list" />
-    
+    <InputNewTime v-on:add-new-time="emitNewTime" id="input-new-time" />
+    <Laptime
+      :tracks="tracks"
+      :selectedTrack="selectedTrack"
+      id="laptime-list"
+    />
   </div>
 </template>
 
@@ -28,31 +28,30 @@ export default {
     return {
       isInputActive: false,
       newTime: {},
-
     };
   },
   methods: {
     moveLaptime(bool) {
-      const laptimeEl = document.getElementById('laptime-list');
-      if(bool) {
-        laptimeEl.style.transform = 'translateY(0)';
-      }else{
-        laptimeEl.style.transform = 'translateY(-190px)';
-      }      
+      const laptimeEl = document.getElementById("laptime-list");
+      if (bool) {
+        laptimeEl.style.transform = "translateY(0)";
+      } else {
+        laptimeEl.style.transform = "translateY(-190px)";
+      }
     },
     moveInput(bool) {
-      const inputTime = document.getElementById('input-new-time');
-      if(bool) {
-        inputTime.style.transform = 'scale(1)';
-      }else{
-        inputTime.style.transform = 'scale(0)';
+      const inputTime = document.getElementById("input-new-time");
+      if (bool) {
+        inputTime.style.transform = "scale(1)";
+      } else {
+        inputTime.style.transform = "scale(0)";
       }
-
     },
     toggleInput() {
-      this.isInputActive = !this.isInputActive;      
+      this.isInputActive = !this.isInputActive;
       this.moveLaptime(this.isInputActive);
       this.moveInput(this.isInputActive);
+      document.getElementById('car').focus();
     },
     emitNewTime(data) {
       this.newTime = data;
@@ -80,19 +79,4 @@ export default {
   transition: transform 0.3s ease-in;
   transform: translateY(-190px);
 }
-
-// .scale-enter-active,
-// .scale-leave-active {
-//   transition: transform 0.3s ease-in;
-//   transform-origin: top left;
-// }
-// .scale-enter,
-// .scale-leave-to {
-//   transform: scale(0);
-// }
-
-
-
-
-
 </style> 

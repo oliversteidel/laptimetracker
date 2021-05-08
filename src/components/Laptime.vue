@@ -17,7 +17,7 @@
           <div class="lap-time">
             <p>{{ time.laptime }}</p>
           </div>
-          <div class="diff"><p></p></div>
+          <div class="diff"><p>+{{ time.diffTime }}</p></div>
         </div>
       </div>
     </li>
@@ -69,7 +69,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: $font-color;
   }
 
@@ -83,7 +83,7 @@ export default {
     border-left: 1px solid;
     border-image-slice: 1;
     border-image-source: $gradient;
-    font-size: 2rem;
+    
   }
 
   .power-index {
@@ -91,7 +91,7 @@ export default {
     border-left: 1px solid;
     border-image-slice: 1;
     border-image-source: $gradient;
-    font-size: 2rem;
+    
   }
 
   .lap-time {

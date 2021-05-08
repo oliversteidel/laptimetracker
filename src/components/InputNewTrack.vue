@@ -36,6 +36,9 @@ export default {
       }
     },
   },
+  mounted() {
+    document.getElementById('race-track').focus();
+  }
 };
 </script>
 

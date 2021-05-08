@@ -50,20 +50,17 @@ export default {
     addTrack(newTrack) {
       this.tracks.push(newTrack);
     },
-    addTime(newTime) {
-      let temp = {
-        car: newTime.car,
-        powerIndex: newTime.powerIndex,
-        laptime: newTime.laptime,
-      };      
+
+    addTime(newTime) {      
       this.tracks.forEach((el) => {
         if (el.name === this.selectedTrack) {
-          el.times.push(temp);
+          el.times.push(Object.assign({}, newTime));
         }
       });
       this.sortLaptimes();
       this.calcTimeDiffs();
     },
+
     sortLaptimes() {
       this.tracks.forEach((el) => {
         el.times = el.times.sort(function (a, b) {
@@ -75,6 +72,7 @@ export default {
         });
       });
     },
+
     calcTimeDiffs() {
       this.tracks.forEach((el) => {
         if (el.times.length > 1) {
@@ -82,7 +80,7 @@ export default {
           el.times.forEach((item) => {
             let compareTime = this.convertLaptimeToMillis(item.laptime);
             let result = compareTime - bestTime;
-            console.log(result);            
+            item.diffTime = this.millisToMinutesAndSeconds(result);
           });
         }
       });
@@ -102,10 +100,19 @@ export default {
       return minInMillis + secInMillis + tenth;
     },
 
+    millisToMinutesAndSeconds(millis) {
+      var minutes = Math.floor(millis / 60000);
+      var seconds = ((millis % 60000) / 1000).toFixed(3);
+      return seconds == 60
+        ? minutes + 1 + ":00"
+        : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    },
+
     showTrackScreen(trackName) {
       this.selectedTrack = trackName;
       this.isAtHomeScreen = false;
     },
+
     showHomeScreen() {
       this.isAtHomeScreen = true;
       this.selectedTrack = "";

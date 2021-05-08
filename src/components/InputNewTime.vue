@@ -10,6 +10,7 @@
           class="border-gradient"
           required
           v-on:keyup="checkInputComplete"
+          placeholder="Porsche GT3 RS"
         />
       </div>
       <div class="index-container flex-col">
@@ -26,17 +27,20 @@
           id="laptime"
           class="border-gradient"
           required
-          v-on:keyup="checkInputComplete"
+          v-on:keyup="[checkInputComplete(), formatLaptimeInput($event)]"
+          placeholder="00:00,000"
+          maxlength="9"
         />
       </div>
       <div class="submit-container flex-col">
-        <div
+        <button
+          type="submit"
           class="submit-btn border-gradient flex ai-c jc-c"
           :class="[isComplete ? bgGreen : bgRed]"
           @click="addTime"
         >
           Add Time
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -50,41 +54,52 @@ export default {
       isComplete: false,
       bgRed: "submit-btn--red",
       bgGreen: "submit-btn--green",
-      newTime: { car: "", powerIndex: "", laptime: ""}
-    }
+      newTime: { car: "", powerIndex: "", laptime: "", diffTime: "" },
+    };
   },
   methods: {
-      checkInputComplete() {
-          if(this.isComplete) {
-              return              
-          }
-
-          const inputCar = document.getElementById('car');          
-          const inputLaptime = document.getElementById('laptime');
-
-          if(inputCar.value && inputLaptime.value) {
-              this.isComplete = true;
-          }
-      },
-      addTime() {
-          const inputCar = document.getElementById('car');
-          const inputIndex = document.getElementById('index');
-          const inputLaptime = document.getElementById('laptime');
-
-          if(inputCar.value && inputLaptime.value) {
-              this.newTime.car = inputCar.value;
-              this.newTime.powerIndex = inputIndex.value;
-              this.newTime.laptime = inputLaptime.value;
-          }
-
-          this.$emit('add-new-time', this.newTime);
-          
-          inputCar.value = "";
-          inputIndex.value = "";
-          inputLaptime.value = "";
-          this.isComplete = false;
+    checkInputComplete() {
+      if (this.isComplete) {
+        return;
       }
-  }
+
+      const inputCar = document.getElementById("car");
+      const inputLaptime = document.getElementById("laptime");
+
+      if (inputCar.value && inputLaptime.value) {
+        this.isComplete = true;
+      }
+    },
+    addTime() {
+      if (this.isComplete) {
+        const inputCar = document.getElementById("car");
+        const inputIndex = document.getElementById("index");
+        const inputLaptime = document.getElementById("laptime");
+
+        this.newTime.car = inputCar.value;
+        this.newTime.powerIndex = inputIndex.value;
+        this.newTime.laptime = inputLaptime.value;
+
+        this.$emit("add-new-time", this.newTime);
+
+        inputCar.value = "";
+        inputIndex.value = "";
+        inputLaptime.value = "";
+        this.isComplete = false;
+      }
+    },
+    formatLaptimeInput(e) {
+      if (e.key !== "Backspace") {
+        const inputLaptime = document.getElementById("laptime");
+        if (inputLaptime.value.length === 2) {
+          inputLaptime.value += ":";
+        }
+        if (inputLaptime.value.length === 5) {
+          inputLaptime.value += ",";
+        }
+      }
+    },
+  },
 };
 </script>
 
