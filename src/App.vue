@@ -1,5 +1,9 @@
 <template>
-  <div id="app" class="bg-home flex-col ai-c" :class="{ 'bg-track': !isAtHomeScreen }">
+  <div
+    id="app"
+    class="bg-home flex-col ai-c"
+    :class="{ 'bg-track': !isAtHomeScreen }"
+  >
     <TheHeader />
     <transition name="fade">
       <TheHomeScreen
@@ -10,7 +14,7 @@
       />
     </transition>
     <transition name="fade-down">
-      <TheTrackScreen        
+      <TheTrackScreen
         v-if="!isAtHomeScreen"
         :selectedTrack="selectedTrack"
         :tracks="tracks"
@@ -108,11 +112,12 @@ export default {
     deleteLaptime(id) {
       //console.log('function called:' + id);
       this.tracks.forEach((el) => {
-        if(el.name === this.selectedTrack) {
+        if (el.name === this.selectedTrack) {
           el.times = el.times.filter((time) => time.id !== id);
-          
         }
-      })
+      });
+      this.sortLaptimes();
+      this.calcTimeDiffs();
       this.saveData();
     },
 
@@ -136,7 +141,7 @@ export default {
       this.tracks = JSON.parse(retrievedData);
     },
   },
-  mounted() {    
+  mounted() {
     this.loadData();
   },
 };

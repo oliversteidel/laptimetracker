@@ -38,4 +38,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/_globals.scss";
+
+.container {
+  width: 100%;
+  max-width: 50rem;  
+}
 </style>
