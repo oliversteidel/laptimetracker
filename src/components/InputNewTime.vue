@@ -18,8 +18,7 @@
         <input type="text" name="index" id="index" class="border-gradient" />
       </div>
     </div>
-    <div class="laptime-submit-container flex jc-sb">
-      <div class="laptime-container flex-col">
+    <div class="laptime-container flex-col">
         <label for="laptime">Laptime</label>
         <input
           type="text"
@@ -32,6 +31,18 @@
           maxlength="9"
         />
       </div>
+    <div class="setup-submit-container flex jc-sb">
+      <div class="setup-container flex-col">
+        <label for="setup">Setup-Info</label>
+        <input
+          type="text"
+          name="setup"
+          id="setup"
+          class="border-gradient"                    
+          placeholder="z.B max-downforce"
+        />
+      </div>
+      
       <div class="submit-container flex-col">
         <button
           type="submit"
@@ -54,7 +65,7 @@ export default {
       isComplete: false,
       bgRed: "submit-btn--red",
       bgGreen: "submit-btn--green",
-      newTime: { car: "", powerIndex: "", laptime: "", diffTime: "" },
+      newTime: { car: "", powerIndex: "", laptime: "", diffTime: "", setup: "" },
     };
   },
   methods: {
@@ -75,16 +86,20 @@ export default {
         const inputCar = document.getElementById("car");
         const inputIndex = document.getElementById("index");
         const inputLaptime = document.getElementById("laptime");
+        const inputSetup = document.getElementById("setup");
 
         this.newTime.car = inputCar.value;
         this.newTime.powerIndex = inputIndex.value;
         this.newTime.laptime = inputLaptime.value;
+        this.newTime.setup = inputSetup.value;
+        
 
         this.$emit("add-new-time", this.newTime);
 
         inputCar.value = "";
         inputIndex.value = "";
         inputLaptime.value = "";
+        inputSetup.value = "";
         this.isComplete = false;
       }
     },
@@ -107,13 +122,14 @@ export default {
 @import "../style/_globals.scss";
 
 .container {
-  height: 18rem;
+  height: 27rem;
   background: $bg-color;
   padding: 1rem;
   margin-top: 1rem;
 
   .car-container,
-  .laptime-container {
+  .laptime-container,
+  .setup-container {
     width: 70%;
   }
 

@@ -6,8 +6,9 @@
           <div class="position">
             <p>{{ index + 1 }}.</p>
           </div>
-          <div class="car-name">
+          <div class="car-name setup-info">
             <p>{{ time.car }}</p>
+            <p class="setup-text">{{ time.setup }}</p>
           </div>
           <div class="power-index">
             <p>{{ time.powerIndex }}</p>
@@ -71,6 +72,15 @@ export default {
     justify-content: center;
     font-size: 2rem;
     color: $font-color;
+  }
+
+  .setup-info {
+    flex-direction: column;
+  }
+
+  .setup-text {
+    font-weight: 300;
+    font-size: 1.8rem;
   }
 
   .position {

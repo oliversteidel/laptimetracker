@@ -36,12 +36,7 @@ export default {
     return {
       isAtHomeScreen: true,
       selectedTrack: "",
-      tracks: [
-        {
-          name: "Mugello",
-          times: [],
-        },
-      ],
+      tracks: [],
       bgHome: "bg-home",
       bgTrack: "bg-track",
     };
@@ -59,6 +54,7 @@ export default {
       });
       this.sortLaptimes();
       this.calcTimeDiffs();
+      this.saveData();
     },
 
     sortLaptimes() {
@@ -117,7 +113,20 @@ export default {
       this.isAtHomeScreen = true;
       this.selectedTrack = "";
     },
+
+    saveData() {
+      localStorage.setItem('tracks', JSON.stringify(this.tracks));
+    },
+
+    loadData() {
+      if(localStorage.getItem("tracks") === null) return;
+      let retrievedData = localStorage.getItem("tracks");
+      this.tracks = JSON.parse(retrievedData);
+    }
   },
+  mounted() {    
+    this.loadData();
+  }
 };
 </script>
 

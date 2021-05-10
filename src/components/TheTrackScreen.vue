@@ -2,8 +2,9 @@
   <div class="container">
     <TrackName :selectedTrack="selectedTrack" />
     <div class="btn-container flex jc-sb">
-      <BtnNewTime @click.native="toggleInput" />
+      
       <BtnHome @click.native="$emit('back-to-home')" />
+      <BtnNewTime @click.native="toggleInput" />
     </div>
     <InputNewTime v-on:add-new-time="emitNewTime" id="input-new-time" />
     <Laptime
@@ -70,13 +71,13 @@ export default {
 }
 
 #input-new-time {
-  transform-origin: top left;
+  transform-origin: top right;
   transform: scale(0);
   transition: transform 0.3s ease-in;
 }
 
 #laptime-list {
   transition: transform 0.3s ease-in;
-  transform: translateY(-190px);
+  transform: translateY(-280px);
 }
 </style> 
