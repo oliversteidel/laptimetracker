@@ -1,6 +1,6 @@
 <template>
-  <ul>
-    <li v-for="(time, index) in times" :key="time.index">
+  <ul :class="{'delete-alert': inDeleteMode}">
+    <li v-for="(time, index) in timesArr" :key="time.id" @click="$emit('delete-laptime', time.id)">
       <div class="container flex-col border-gradient">
         <div class="container__top flex">
           <div class="position">
@@ -28,25 +28,31 @@
 <script>
 export default {
   name: "Laptime",
-  props: ["tracks", "selectedTrack"],
+  props: ["tracks", "selectedTrack", "inDeleteMode"],
   computed: {
-    times() {
+    //returnes [times] inside of [tracks] for selectedTrack
+    //data src of <li>-for-loop
+    timesArr() {
       let arrIndex = this.tracks.findIndex(
         (el) => el.name === this.selectedTrack
       );
       return this.tracks[arrIndex].times;
     },
   },
+
+  
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../style/_globals.scss";
-
+ .delete-alert {   
+   box-shadow: $shadow-red;
+ }
 
 .container {
   width: 100%;
-  height: 10rem;
+  min-height: 10rem;
   margin-top: 1rem;
   background: $bg-color;
 
@@ -54,6 +60,7 @@ export default {
   &__bottom {
     width: 100%;
     height: 50%;
+    min-height: 5rem;
   }
 
   &__top {
@@ -76,6 +83,7 @@ export default {
 
   .setup-info {
     flex-direction: column;
+    padding: 0.5rem;
   }
 
   .setup-text {
@@ -116,6 +124,7 @@ export default {
     border-image-source: $gradient;
   }
 }
+
 
 
 </style>

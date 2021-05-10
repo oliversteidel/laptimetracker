@@ -1,5 +1,5 @@
 <template>
-<div class="container btn flex-col ai-c jc-c border-gradient">
+<div class="btn flex-col ai-c jc-c border-gradient">
     <img src="../assets/img/icon-home.svg" alt="icon of a garage">
     <p>Home</p>
 </div>

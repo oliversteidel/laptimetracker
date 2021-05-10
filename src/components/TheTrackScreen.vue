@@ -2,14 +2,16 @@
   <div class="container">
     <TrackName :selectedTrack="selectedTrack" />
     <div class="btn-container flex jc-sb">
-      
       <BtnHome @click.native="$emit('back-to-home')" />
+      <BtnDeleteTime @click.native="toggleDeleteMode" />
       <BtnNewTime @click.native="toggleInput" />
     </div>
     <InputNewTime v-on:add-new-time="emitNewTime" id="input-new-time" />
     <Laptime
       :tracks="tracks"
-      :selectedTrack="selectedTrack"
+      :selectedTrack="selectedTrack"  
+      :inDeleteMode="inDeleteMode"   
+      v-on:delete-laptime="deleteLaptime"
       id="laptime-list"
     />
   </div>
@@ -17,17 +19,26 @@
 
 <script>
 import TrackName from "./TrackName.vue";
-import BtnNewTime from "./BtnNewTime.vue";
 import BtnHome from "./BtnHome.vue";
+import BtnDeleteTime from "./BtnDeleteTime.vue";
+import BtnNewTime from "./BtnNewTime.vue";
 import InputNewTime from "./InputNewTime.vue";
 import Laptime from "./Laptime.vue";
 export default {
   name: "TheTrackScreen",
-  components: { TrackName, BtnNewTime, BtnHome, InputNewTime, Laptime },
+  components: {
+    TrackName,
+    BtnHome,
+    BtnDeleteTime,
+    BtnNewTime,
+    InputNewTime,
+    Laptime,
+  },
   props: ["selectedTrack", "tracks"],
   data() {
     return {
       isInputActive: false,
+      inDeleteMode: false,
       newTime: {},
     };
   },
@@ -37,7 +48,7 @@ export default {
       if (bool) {
         laptimeEl.style.transform = "translateY(0)";
       } else {
-        laptimeEl.style.transform = "translateY(-190px)";
+        laptimeEl.style.transform = "translateY(-280px)";
       }
     },
     moveInput(bool) {
@@ -52,7 +63,17 @@ export default {
       this.isInputActive = !this.isInputActive;
       this.moveLaptime(this.isInputActive);
       this.moveInput(this.isInputActive);
-      document.getElementById('car').focus();
+      document.getElementById("car").focus();
+    },
+
+    toggleDeleteMode() {
+      this.inDeleteMode = !this.inDeleteMode;
+    },
+
+    deleteLaptime(id) {
+      if(this.inDeleteMode) {
+        this.$emit('delete-laptime', id);
+      }
     },
     emitNewTime(data) {
       this.newTime = data;
@@ -66,8 +87,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/_globals.scss";
+
+.container {
+  width: 100%;
+  max-width: 50rem;  
+}
+
 .btn-container {
   margin-top: 1rem;
+  
 }
 
 #input-new-time {

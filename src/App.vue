@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-home" :class="{ 'bg-track': !isAtHomeScreen }">
+  <div id="app" class="bg-home flex-col ai-c" :class="{ 'bg-track': !isAtHomeScreen }">
     <TheHeader />
     <transition name="fade">
       <TheHomeScreen
@@ -9,13 +9,14 @@
         :tracks="tracks"
       />
     </transition>
-    <transition name="fade">
-      <TheTrackScreen
+    <transition name="fade-down">
+      <TheTrackScreen        
         v-if="!isAtHomeScreen"
         :selectedTrack="selectedTrack"
         :tracks="tracks"
         v-on:back-to-home="showHomeScreen"
         v-on:add-new-time="addTime"
+        v-on:delete-laptime="deleteLaptime"
       />
     </transition>
   </div>
@@ -46,7 +47,7 @@ export default {
       this.tracks.push(newTrack);
     },
 
-    addTime(newTime) {      
+    addTime(newTime) {
       this.tracks.forEach((el) => {
         if (el.name === this.selectedTrack) {
           el.times.push(Object.assign({}, newTime));
@@ -104,6 +105,17 @@ export default {
         : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     },
 
+    deleteLaptime(id) {
+      //console.log('function called:' + id);
+      this.tracks.forEach((el) => {
+        if(el.name === this.selectedTrack) {
+          el.times = el.times.filter((time) => time.id !== id);
+          
+        }
+      })
+      this.saveData();
+    },
+
     showTrackScreen(trackName) {
       this.selectedTrack = trackName;
       this.isAtHomeScreen = false;
@@ -115,18 +127,18 @@ export default {
     },
 
     saveData() {
-      localStorage.setItem('tracks', JSON.stringify(this.tracks));
+      localStorage.setItem("tracks", JSON.stringify(this.tracks));
     },
 
     loadData() {
-      if(localStorage.getItem("tracks") === null) return;
+      if (localStorage.getItem("tracks") === null) return;
       let retrievedData = localStorage.getItem("tracks");
       this.tracks = JSON.parse(retrievedData);
-    }
+    },
   },
   mounted() {    
     this.loadData();
-  }
+  },
 };
 </script>
 
@@ -134,6 +146,7 @@ export default {
 @import "./style/_globals.scss";
 
 #app {
+  width: 100vw;
   min-height: 100vh;
   padding: 7rem 1rem;
   background-size: cover;
@@ -153,17 +166,34 @@ export default {
   background-position: 85% !important;
 }
 
+// transition HomeScreen
 .fade-enter-active {
   transition: opacity 0.25s ease-in;
   transition-delay: 0.5s;
 }
 
 .fade-leave-active {
-  transition: opacity 0.25s ease-out;
+  transition: opacity 0.25s ease-in;
 }
 
 .fade-enter,
 .fade-leave-to {
+  opacity: 0;
+}
+
+//transition TrackScreen
+.fade-down-enter-active {
+  transition: opacity 0.25s ease-in, transform 0.5s linear;
+  transition-delay: 0.5s;
+}
+
+.fade-down-leave-active {
+  transition: opacity 0.25s ease-in, transform 0.5s linear;
+}
+
+.fade-down-enter,
+.fade-down-leave-to {
+  transform: translateY(50px);
   opacity: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<div class="container btn flex-col ai-c jc-c border-gradient">
+<div class="btn flex-col ai-c jc-c border-gradient">
     <img src="../assets/img/icon-track.svg" alt="icon of a racetrack">
     <p>New Track</p>
 </div>

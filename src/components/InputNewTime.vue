@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from "uuid";
 export default {
   name: "InputNewTime",
   data() {
@@ -65,7 +66,7 @@ export default {
       isComplete: false,
       bgRed: "submit-btn--red",
       bgGreen: "submit-btn--green",
-      newTime: { car: "", powerIndex: "", laptime: "", diffTime: "", setup: "" },
+      newTime: {id: "", car: "", powerIndex: "", laptime: "", diffTime: "", setup: "" },
     };
   },
   methods: {
@@ -88,6 +89,7 @@ export default {
         const inputLaptime = document.getElementById("laptime");
         const inputSetup = document.getElementById("setup");
 
+        this.newTime.id = uuidv4();
         this.newTime.car = inputCar.value;
         this.newTime.powerIndex = inputIndex.value;
         this.newTime.laptime = inputLaptime.value;

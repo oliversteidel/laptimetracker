@@ -6,11 +6,12 @@ $input-bg-color: hsla(203, 30%, 80%, 0.2);
 $red: hsla(4, 100%, 30%, 0.2);
 $green: hsla(138, 100%, 20%, 0.2);
 
+// shadows
+$shadow-red: 0 0 5px 5px hsla(4, 100%, 30%, 0.8);
+
 // breakpoints
 
 $br-small: 31.25rem; //500px
-
-
 
 // helper classes
 
@@ -47,20 +48,20 @@ $br-small: 31.25rem; //500px
 .btn {
   min-width: 10rem;
   max-width: 10rem;
-    height: 10rem;
-    background: $bg-color;
-    cursor: pointer;
-    
-    img {
-        width: 5rem;
-        height: auto;
-        margin-bottom: 0.5rem;
-    }
+  height: 10rem;
+  background: $bg-color;
+  cursor: pointer;
 
-    p {
-        font-size: 2rem;
-        color: $font-color;
-    }
+  img {
+    width: 5rem;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 2rem;
+    color: $font-color;
+  }
 }
 
 label {
@@ -96,6 +97,6 @@ html {
 
 @mixin breakpoint-up($size) {
   @media only screen and (min-width: $size) {
-      @content;
+    @content;
   }
 }
