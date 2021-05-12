@@ -23,6 +23,7 @@
         v-on:delete-laptime="deleteLaptime"
       />
     </transition>
+    <TheFooter />
   </div>
 </template>
 
@@ -30,12 +31,14 @@
 import TheHeader from "./components/TheHeader";
 import TheHomeScreen from "./components/TheHomeScreen";
 import TheTrackScreen from "./components/TheTrackScreen";
+import TheFooter from "./components/TheFooter";
 export default {
   name: "App",
   components: {
     TheHeader,
     TheHomeScreen,
     TheTrackScreen,
+    TheFooter
   },
   data() {
     return {
