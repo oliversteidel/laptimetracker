@@ -15,10 +15,11 @@ export default {
 .header {
   width: 100%;
   height: 6rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  background: $bg-color;
+  background: hsl(203, 30%, 10%);  
+  z-index: 100;
 
   &__title {
     font-family: "Racing Sans One", cursive;

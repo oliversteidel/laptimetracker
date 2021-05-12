@@ -73,7 +73,9 @@ export default {
     deleteLaptime(id) {
       if(this.inDeleteMode) {
         this.$emit('delete-laptime', id);
+        this.inDeleteMode = false;
       }
+      
     },
     emitNewTime(data) {
       this.newTime = data;

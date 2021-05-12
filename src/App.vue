@@ -1,8 +1,8 @@
 <template>
   <div
     id="app"
-    class="bg-home flex-col ai-c"
-    :class="{ 'bg-track': !isAtHomeScreen }"
+    class="flex-col ai-c"
+    
   >
     <TheHeader />
     <transition name="fade">
@@ -45,8 +45,7 @@ export default {
       isAtHomeScreen: true,
       selectedTrack: "",
       tracks: [],
-      bgHome: "bg-home",
-      bgTrack: "bg-track",
+      
     };
   },
   methods: {
@@ -157,22 +156,15 @@ export default {
   width: 100vw;
   min-height: 100vh;
   padding: 7rem 1rem;
+  background-image: url("./assets/img/bg-img.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: 60%;
   background-attachment: fixed;
   background-color: hsl(203, 30%, 10%);
   transition: background-image 0.25s linear;
 }
 
-.bg-home {
-  background-image: url("./assets/img/bg-home.jpg");
-}
-
-.bg-track {
-  background-image: url("./assets/img/bg-track.jpg");
-  background-position: 85% !important;
-}
 
 // transition HomeScreen
 .fade-enter-active {

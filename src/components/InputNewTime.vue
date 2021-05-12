@@ -15,7 +15,7 @@
       </div>
       <div class="index-container flex-col">
         <label for="index">Index</label>
-        <input type="text" name="index" id="index" class="border-gradient" />
+        <input type="text" name="index" id="index" class="border-gradient" placeholder="A700" />
       </div>
     </div>
     <div class="laptime-container flex-col">
