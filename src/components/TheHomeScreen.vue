@@ -4,7 +4,7 @@
       <BtnNewTrack @click.native="toggleInput" />
       <BtnDelete :btnImgSrc="btnImgSrc" @click.native="toggleDeleteMode" />
     </div>
-    <InputNewTrack v-on:add-track="emitTrackObject" id="input-new-track" />
+    <InputNewTrack :tracks="tracks" v-on:add-track="emitTrackObject" id="input-new-track" />
     <TrackList
       :inDeleteMode="inDeleteMode"
       :tracks="tracks"      
