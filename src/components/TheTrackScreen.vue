@@ -54,9 +54,9 @@ export default {
     moveInput(bool) {
       const inputTime = document.getElementById("input-new-time");
       if (bool) {
-        inputTime.style.transform = "scale(1)";
+        inputTime.style.transform = "scaleY(1)";
       } else {
-        inputTime.style.transform = "scale(0)";
+        inputTime.style.transform = "scaleY(0)";
       }
     },
     toggleInput() {
@@ -102,7 +102,7 @@ export default {
 
 #input-new-time {
   transform-origin: top right;
-  transform: scale(0);
+  transform: scaleY(0);
   transition: transform 0.3s ease-in;
 }
 

@@ -1,17 +1,20 @@
 <template>
   <div class="container">
-    <AddNewTrack v-on:add-track="emitTrackObject" />
-    <TrackList :tracks="tracks" v-on:track-clicked="emitClickedTrack" />
+    <BtnNewTrack @click.native="toggleInput" />
+    <InputNewTrack v-on:add-track="emitTrackObject" id="input-new-track" />
+    <TrackList :tracks="tracks" v-on:track-clicked="emitClickedTrack" id="track-list" />
   </div>
 </template>
 
 <script>
-import AddNewTrack from "./AddNewTrack";
+import BtnNewTrack from "./BtnNewTrack";
+import InputNewTrack from "./InputNewTrack";
 import TrackList from "./TrackList";
 export default {
   name: "TheHomeScreen",
   components: {
-    AddNewTrack,
+    BtnNewTrack,
+    InputNewTrack,
     TrackList,
   },
   props: ["tracks"],
@@ -19,6 +22,7 @@ export default {
     return {
       trackObj: "",
       clickedTrack: "",
+      isInputActive: false,
     };
   },
   methods: {
@@ -26,11 +30,34 @@ export default {
       this.trackObj = data;
       this.$emit("add-track", this.trackObj);
       this.trackObj = "";
+      this.toggleInput();
     },
     emitClickedTrack(data) {
       this.clickedTrack = data;
       this.$emit("track-clicked", this.clickedTrack);
       this.clickedTrack = "";
+    },
+    moveTracklist(bool) {
+      const laptimeEl = document.getElementById("track-list");
+      if (bool) {
+        laptimeEl.style.transform = "translateY(0)";
+      } else {
+        laptimeEl.style.transform = "translateY(-100px)";
+      }
+    },
+    moveInput(bool) {
+      const inputTime = document.getElementById("input-new-track");
+      if (bool) {
+        inputTime.style.transform = "scaleY(1)";
+      } else {
+        inputTime.style.transform = "scaleY(0)";
+      }
+    },
+    toggleInput() {
+      this.isInputActive = !this.isInputActive;
+      this.moveTracklist(this.isInputActive);
+      this.moveInput(this.isInputActive);
+      document.getElementById("race-track").focus();
     },
   },
 };
@@ -41,6 +68,18 @@ export default {
 
 .container {
   width: 100%;
-  max-width: 50rem;  
+  max-width: 50rem;
+}
+
+#input-new-track {
+  margin-top: 1rem;
+  transition: transform 0.3s ease-in;
+  transform-origin: top left;
+  transform: scaleY(0);
+}
+
+#track-list {
+  transition: transform 0.3s ease-in;
+  transform: translateY(-100px);
 }
 </style>
