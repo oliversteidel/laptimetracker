@@ -3,7 +3,7 @@
     <TrackName :selectedTrack="selectedTrack" />
     <div class="btn-container flex jc-sb">
       <BtnHome @click.native="$emit('back-to-home')" />
-      <BtnDeleteTime @click.native="toggleDeleteMode" />
+      <BtnDelete @click.native="toggleDeleteMode" :btnImgSrc="btnImgSrc" />
       <BtnNewTime @click.native="toggleInput" />
     </div>
     <InputNewTime v-on:add-new-time="emitNewTime" id="input-new-time" />
@@ -20,7 +20,7 @@
 <script>
 import TrackName from "./TrackName.vue";
 import BtnHome from "./BtnHome.vue";
-import BtnDeleteTime from "./BtnDeleteTime.vue";
+import BtnDelete from "./BtnDelete.vue";
 import BtnNewTime from "./BtnNewTime.vue";
 import InputNewTime from "./InputNewTime.vue";
 import Laptime from "./Laptime.vue";
@@ -29,7 +29,7 @@ export default {
   components: {
     TrackName,
     BtnHome,
-    BtnDeleteTime,
+    BtnDelete,
     BtnNewTime,
     InputNewTime,
     Laptime,
@@ -40,6 +40,7 @@ export default {
       isInputActive: false,
       inDeleteMode: false,
       newTime: {},
+      btnImgSrc: 'assets/img/icon-stopwatch-delete.svg'
     };
   },
   methods: {

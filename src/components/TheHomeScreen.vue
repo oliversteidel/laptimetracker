@@ -1,12 +1,20 @@
 <template>
   <div class="container">
-    <BtnNewTrack @click.native="toggleInput" />
+    <div class="wrapper flex jc-sb">
+      <BtnNewTrack @click.native="toggleInput" />
+      <BtnDelete :btnImgSrc="btnImgSrc" />
+    </div>
     <InputNewTrack v-on:add-track="emitTrackObject" id="input-new-track" />
-    <TrackList :tracks="tracks" v-on:track-clicked="emitClickedTrack" id="track-list" />
+    <TrackList
+      :tracks="tracks"      
+      v-on:track-clicked="emitClickedTrack"
+      id="track-list"
+    />
   </div>
 </template>
 
 <script>
+import BtnDelete from "./BtnDelete.vue";
 import BtnNewTrack from "./BtnNewTrack";
 import InputNewTrack from "./InputNewTrack";
 import TrackList from "./TrackList";
@@ -14,6 +22,7 @@ export default {
   name: "TheHomeScreen",
   components: {
     BtnNewTrack,
+    BtnDelete,
     InputNewTrack,
     TrackList,
   },
@@ -23,6 +32,8 @@ export default {
       trackObj: "",
       clickedTrack: "",
       isInputActive: false,
+      inDeleteMode: false,
+      btnImgSrc: "assets/img/icon-track-delete.svg",
     };
   },
   methods: {
@@ -58,6 +69,9 @@ export default {
       this.moveTracklist(this.isInputActive);
       this.moveInput(this.isInputActive);
       document.getElementById("race-track").focus();
+    },
+    toggleDeleteMode() {
+      this.inDeleteMode = !this.inDeleteMode;
     },
   },
 };

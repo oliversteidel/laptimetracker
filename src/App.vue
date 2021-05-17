@@ -111,8 +111,7 @@ export default {
         : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     },
 
-    deleteLaptime(id) {
-      //console.log('function called:' + id);
+    deleteLaptime(id) {      
       this.tracks.forEach((el) => {
         if (el.name === this.selectedTrack) {
           el.times = el.times.filter((time) => time.id !== id);

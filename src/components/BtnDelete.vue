@@ -1,6 +1,6 @@
 <template>
 <div class="btn flex-col ai-c jc-c border-gradient">
-    <img src="../assets/img/icon-stopwatch-delete.svg" alt="icon of a racetrack">
+    <img :src="require(`@/${btnImgSrc}`)" alt="">
     <p>Delete Mode</p>
 </div>
     
@@ -8,7 +8,9 @@
 
 <script>
 export default {
-    name: "BtnDeleteTime"
+    //inheritAttrs: false,
+    name: "BtnDelete",
+    props: ["btnImgSrc"]
 }
 </script>
 

@@ -15,6 +15,7 @@
 export default {
   name: "Tracklist",
   props: ["tracks"],
+  
 
   
 };
