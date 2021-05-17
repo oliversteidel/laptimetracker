@@ -2,10 +2,11 @@
   <div class="container">
     <div class="wrapper flex jc-sb">
       <BtnNewTrack @click.native="toggleInput" />
-      <BtnDelete :btnImgSrc="btnImgSrc" />
+      <BtnDelete :btnImgSrc="btnImgSrc" @click.native="toggleDeleteMode" />
     </div>
     <InputNewTrack v-on:add-track="emitTrackObject" id="input-new-track" />
     <TrackList
+      :inDeleteMode="inDeleteMode"
       :tracks="tracks"      
       v-on:track-clicked="emitClickedTrack"
       id="track-list"
@@ -47,6 +48,9 @@ export default {
       this.clickedTrack = data;
       this.$emit("track-clicked", this.clickedTrack);
       this.clickedTrack = "";
+      if(this.inDeleteMode) {
+        this.inDeleteMode = false;
+      }
     },
     moveTracklist(bool) {
       const laptimeEl = document.getElementById("track-list");
@@ -72,6 +76,7 @@ export default {
     },
     toggleDeleteMode() {
       this.inDeleteMode = !this.inDeleteMode;
+      this.$emit('delete-active', this.inDeleteMode);      
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul :class="{'delete-alert': inDeleteMode}">
     <li
       class="flex ai-c jc-c border-gradient"
       v-for="track in tracks"
@@ -14,7 +14,7 @@
 <script>
 export default {
   name: "Tracklist",
-  props: ["tracks"],
+  props: ["tracks", "inDeleteMode"],
   
 
   
@@ -23,6 +23,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/_globals.scss";
+
+.delete-alert {   
+   box-shadow: $shadow-red;
+ }
 
 li {
   width: 100%;

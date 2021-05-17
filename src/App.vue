@@ -9,7 +9,8 @@
       <TheHomeScreen
         v-if="isAtHomeScreen"
         v-on:add-track="addTrack"
-        v-on:track-clicked="showTrackScreen"
+        v-on:track-clicked="handleClickedTrack"
+        v-on:delete-active="toggleDeleteMode"
         :tracks="tracks"
       />
     </transition>
@@ -43,6 +44,7 @@ export default {
   data() {
     return {
       isAtHomeScreen: true,
+      inDeleteMode: false,
       selectedTrack: "",
       tracks: [],
       
@@ -122,6 +124,20 @@ export default {
       this.saveData();
     },
 
+    deleteTrack(trackName) {
+      this.tracks = this.tracks.filter((el) => el.name !== trackName);
+      this.saveData();
+      this.toggleDeleteMode();
+    },
+
+    handleClickedTrack(trackName) {
+      if(!this.inDeleteMode) {
+        this.showTrackScreen(trackName);
+      }else{
+        this.deleteTrack(trackName);
+      }
+    },
+
     showTrackScreen(trackName) {
       this.selectedTrack = trackName;
       this.isAtHomeScreen = false;
@@ -130,6 +146,10 @@ export default {
     showHomeScreen() {
       this.isAtHomeScreen = true;
       this.selectedTrack = "";
+    },
+
+    toggleDeleteMode() {
+      this.inDeleteMode = !this.inDeleteMode;             
     },
 
     saveData() {
