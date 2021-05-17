@@ -1,9 +1,7 @@
 <template>
-  <div class="container flex">
+  <div class="container">
     <BtnNewTrack @click.native="toggleInput" />
-    <transition name="scale">
-      <InputNewTrack v-if="isInputVisible" v-on:add-track="emitData" />
-    </transition>
+    <InputNewTrack v-on:add-track="emitData" id="input-new-track" />
   </div>
 </template>
 
@@ -28,9 +26,17 @@ export default {
       this.trackObj = data;
       this.$emit("add-track", this.trackObj);
       this.trackObj = "";
+      this.toggleInput();
     },
     toggleInput() {
-      this.isInputVisible = !this.isInputVisible;      
+      const inputField = document.getElementById("input-new-track");
+      if (this.isInputVisible) {
+        inputField.style.transform = "scale(0)";
+        this.isInputVisible = false;
+      }else{
+        inputField.style.transform = "scale(1)";
+         this.isInputVisible = true;
+      }
     },
   },
 };
@@ -42,14 +48,10 @@ export default {
   width: 100%;
 }
 
-.scale-enter-active, .scale-leave-active {
-    transition: transform .25s ease-in;
-    transform-origin: left;
-}
-
-.scale-enter, .scale-leave-to {
-    transform: scaleX(0);
-    
-    
+#input-new-track {
+  margin-top: 1rem;
+  transition: transform .3s ease-in;
+  transform-origin: top left;
+  transform: scale(0);
 }
 </style>

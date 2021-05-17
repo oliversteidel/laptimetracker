@@ -3,7 +3,7 @@
     <li
       class="flex ai-c jc-c border-gradient"
       v-for="track in tracks"
-      :key="track.name"
+      :key="track.name"      
       @click="$emit('track-clicked', track.name)"
     >
       {{ track.name }}
@@ -16,6 +16,7 @@ export default {
   name: "Tracklist",
   props: ["tracks"],
 
+  
 };
 </script>
 
