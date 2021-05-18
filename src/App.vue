@@ -16,7 +16,7 @@
     </transition>
     <transition name="fade-down">
       <TheTrackScreen
-        v-if="!isAtHomeScreen"
+        v-if="isAtTrackScreen"
         :selectedTrack="selectedTrack"
         :tracks="tracks"
         v-on:back-to-home="showHomeScreen"
@@ -44,6 +44,7 @@ export default {
   data() {
     return {
       isAtHomeScreen: true,
+      isAtTrackScreen: false,
       inDeleteMode: false,
       selectedTrack: "",
       tracks: [],
@@ -141,13 +142,18 @@ export default {
     showTrackScreen(trackName) {
       this.selectedTrack = trackName;
       this.isAtHomeScreen = false;
+      this.isAtTrackScreen = true;
     },
 
     showHomeScreen() {
-      this.isAtHomeScreen = true;
+      this.isAtTrackScreen = false;
+      let v = this;
+      setTimeout(function() {
+        v.isAtHomeScreen = true;      
+      }, 400)
       this.selectedTrack = "";
     },
-
+    
     toggleDeleteMode() {
       this.inDeleteMode = !this.inDeleteMode;             
     },
@@ -180,15 +186,14 @@ export default {
   background-repeat: no-repeat;
   background-position: 60%;
   background-attachment: fixed;
-  background-color: hsl(203, 30%, 10%);
-  transition: background-image 0.25s linear;
+  background-color: hsl(203, 30%, 10%);  
 }
 
 
 // transition HomeScreen
 .fade-enter-active {
   transition: opacity 0.25s ease-in;
-  transition-delay: 0.5s;
+  //transition-delay: 0.5s;
 }
 
 .fade-leave-active {
