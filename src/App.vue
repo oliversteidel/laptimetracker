@@ -187,6 +187,7 @@ export default {
   background-position: 60%;
   background-attachment: fixed;
   background-color: hsl(203, 30%, 10%);  
+  position: relative;
 }
 
 
