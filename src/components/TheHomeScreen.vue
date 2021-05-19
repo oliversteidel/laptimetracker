@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="wrapper flex jc-sb">
-      <BtnNewTrack @click.native="toggleInput" />
       <BtnDelete :btnImgSrc="btnImgSrc" @click.native="toggleDeleteMode" />
+      <BtnNewTrack @click.native="toggleInput" />
     </div>
     <InputNewTrack :tracks="tracks" v-on:add-track="emitTrackObject" id="input-new-track" />
     <TrackList

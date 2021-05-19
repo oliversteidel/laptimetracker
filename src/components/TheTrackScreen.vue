@@ -2,8 +2,8 @@
   <div class="container">
     <TrackName :selectedTrack="selectedTrack" />
     <div class="btn-container flex jc-sb">
-      <BtnHome @click.native="$emit('back-to-home')" />
       <BtnDelete @click.native="toggleDeleteMode" :btnImgSrc="btnImgSrc" />
+      <BtnHome @click.native="$emit('back-to-home')" />
       <BtnNewTime @click.native="toggleInput" />
     </div>
     <InputNewTime v-on:add-new-time="emitNewTime" id="input-new-time" />
