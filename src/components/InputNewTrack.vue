@@ -40,7 +40,7 @@ export default {
       if (this.nameAlreadyExists(inputTrackName.value)) {
         this.tooltipActive = true;
         return;
-        
+
       } else if (inputTrackName.value) {
         this.tooltipActive = false;
         const newTrack = {
@@ -54,9 +54,7 @@ export default {
       }
     },
   },
-  mounted() {
-    document.getElementById("race-track").focus();
-  },
+  
 };
 </script>
 
