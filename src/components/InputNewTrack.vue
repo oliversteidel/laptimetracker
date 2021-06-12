@@ -13,7 +13,9 @@
       />
     </div>
     <div class="tooltip border-gradient flex jc-c" v-if="tooltipActive">
-      <p class="tooltip-text">This track already exists! Please choose another one.</p>
+      <p class="tooltip-text">
+        This track already exists! Please choose another one.
+      </p>
     </div>
   </div>
 </template>
@@ -36,10 +38,11 @@ export default {
     addTrackName() {
       const inputTrackName = document.getElementById("race-track");
       if (this.nameAlreadyExists(inputTrackName.value)) {
-        this.toggleTooltip();
+        this.tooltipActive = true;
         return;
+        
       } else if (inputTrackName.value) {
-        this.toggleTooltip();
+        this.tooltipActive = false;
         const newTrack = {
           name: this.trackName,
           times: [],
@@ -49,9 +52,6 @@ export default {
 
         this.trackName = "";
       }
-    },
-    toggleTooltip() {
-      this.tooltipActive = !this.tooltipActive;
     },
   },
   mounted() {
@@ -66,7 +66,6 @@ export default {
   height: 10rem;
   background: $bg-color;
   padding: 1rem;
-  
 }
 
 .tooltip {
@@ -76,7 +75,6 @@ export default {
   &-text {
     font-size: 1.5rem;
     color: $font-color;
-    
   }
 }
 </style>

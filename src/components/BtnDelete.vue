@@ -7,8 +7,7 @@
 </template>
 
 <script>
-export default {
-    //inheritAttrs: false,
+export default {    
     name: "BtnDelete",
     props: ["btnImgSrc"]
 }

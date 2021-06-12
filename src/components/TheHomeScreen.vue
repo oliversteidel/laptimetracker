@@ -34,7 +34,7 @@ export default {
       clickedTrack: "",
       isInputActive: false,
       inDeleteMode: false,
-      btnImgSrc: "assets/img/icon-track-delete.svg",
+      btnImgSrc: "assets/img/icon-trash-thin.svg",
     };
   },
   methods: {

@@ -40,7 +40,7 @@ export default {
       isInputActive: false,
       inDeleteMode: false,
       newTime: {},
-      btnImgSrc: 'assets/img/icon-stopwatch-delete.svg'
+      btnImgSrc: 'assets/img/icon-trash-thin.svg'
     };
   },
   methods: {
